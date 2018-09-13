@@ -1,0 +1,105 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/Game.gd" type="Script" id=1]
+[ext_resource path="res://scenes/gui/SettingsWindow.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/demosong.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/demosound.wav" type="AudioStream" id=4]
+
+[node name="Game" type="Node"]
+
+script = ExtResource( 1 )
+
+[node name="GUI" type="Control" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="SettingsWindow" parent="GUI" index="0" instance=ExtResource( 2 )]
+
+[node name="PlaySoundButton" type="Button" parent="GUI" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 30.0
+margin_top = 20.0
+margin_right = 123.0
+margin_bottom = 111.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "play sound"
+flat = false
+align = 1
+
+[node name="SettingsButton" type="Button" parent="GUI" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 140.0
+margin_top = 20.0
+margin_right = 233.0
+margin_bottom = 111.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "settings"
+flat = false
+align = 1
+
+[node name="Audio" type="Node" parent="." index="1"]
+
+[node name="DemoMusicPlayer" type="AudioStreamPlayer" parent="Audio" index="0" groups=[
+"music",
+]]
+
+stream = ExtResource( 3 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = true
+mix_target = 0
+bus = "music"
+
+[node name="DemoSoundPlayer" type="AudioStreamPlayer" parent="Audio" index="1" groups=[
+"sound",
+]]
+
+stream = ExtResource( 4 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "sfx"
+
+[connection signal="pressed" from="GUI/PlaySoundButton" to="." method="_on_PlaySoundButton_pressed"]
+
+[connection signal="pressed" from="GUI/SettingsButton" to="." method="_on_SettingsButton_pressed"]
+
+
